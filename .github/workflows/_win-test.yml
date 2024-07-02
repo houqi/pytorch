@@ -175,7 +175,7 @@ jobs:
           JOB_NAME: ${{ steps.get-job-id.outputs.job-name }}
           SHA1: ${{ github.event.pull_request.head.sha || github.sha }}
           CUDA_VERSION: ${{ inputs.cuda-version }}
-          PYTORCH_FINAL_PACKAGE_DIR: /c/${{ github.run_id }}/build-results/
+          PYTORCH_FINAL_PACKAGE_DIR: /c/9747420118/build-results/
           BUILD_ENVIRONMENT: ${{ inputs.build-environment }}
           ALPINE_IMAGE: "308535385114.dkr.ecr.us-east-1.amazonaws.com/tool/alpine"
           SHARD_NUMBER: ${{ matrix.shard }}
