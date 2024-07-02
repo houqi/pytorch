@@ -163,23 +163,23 @@ jobs:
   #     docker-image: ${{ needs.linux-focal-cuda11_8-py3_10-gcc9-debug-build.outputs.docker-image }}
   #     test-matrix: ${{ needs.linux-focal-cuda11_8-py3_10-gcc9-debug-build.outputs.test-matrix }}
 
-  win-vs2019-cuda11_8-py3-build:
-    name: win-vs2019-cuda11.8-py3
-    uses: ./.github/workflows/_win-build.yml
-    with:
-      build-environment: win-vs2019-cuda11.8-py3
-      cuda-version: "11.8"
-      test-matrix: |
-        { include: [
-          { config: "default", shard: 1, num_shards: 1, runner: "windows.g5.4xlarge.nvidia.gpu" },
-        ]}
+  # win-vs2019-cuda11_8-py3-build:
+  #   name: win-vs2019-cuda11.8-py3
+  #   uses: ./.github/workflows/_win-build.yml
+  #   with:
+  #     build-environment: win-vs2019-cuda11.8-py3
+  #     cuda-version: "11.8"
+  #     test-matrix: |
+  #       { include: [
+  #         { config: "default", shard: 1, num_shards: 1, runner: "windows.g5.4xlarge.nvidia.gpu" },
+  #       ]}
 
   win-vs2019-cuda11_8-py3-test:
     name: win-vs2019-cuda11.8-py3
     uses: ./.github/workflows/_win-test.yml
     needs:
-      - win-vs2019-cuda11_8-py3-build
-      - target-determination
+      # - win-vs2019-cuda11_8-py3-build
+      # - target-determination
     with:
       build-environment: win-vs2019-cuda11.8-py3
       cuda-version: "11.8"

@@ -110,12 +110,12 @@ jobs:
         uses: seemethere/download-artifact-s3@v4
         with:
           name: ${{ inputs.build-environment }}
-          path: C:\${{ github.run_id }}\build-results
+          path: C:\9747420118\build-results
 
       - name: Check build-results folder
         shell: powershell
         run: |
-          tree /F C:\$Env:GITHUB_RUN_ID\build-results
+          tree /F C:\9747420118\build-results
 
       - name: Download TD artifacts
         continue-on-error: true
