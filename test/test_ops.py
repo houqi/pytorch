@@ -262,9 +262,11 @@ class TestCommon(TestCase):
     # This test runs in double and complex double precision because
     # NumPy does computation internally using double precision for many functions
     # resulting in possible equality check failures.
+    # Mark this test as expected failure on CPU due to https://github.com/pytorch/pytorch/issues/129947
     @onlyNativeDeviceTypes
     @suppress_warnings
     @ops(_ref_test_ops, allowed_dtypes=(torch.float64, torch.long, torch.complex128))
+    @expectedFailureCPU
     def test_numpy_ref(self, device, dtype, op):
         if (
             TEST_WITH_TORCHINDUCTOR
