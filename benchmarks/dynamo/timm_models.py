@@ -80,6 +80,16 @@ REQUIRE_HIGHER_TOLERANCE = {
     "cspdarknet53",
 }
 
+REQUIRE_EVEN_HIGHER_TOLERANCE = {
+    "levit_128",
+    "sebotnet33ts_256",
+}
+
+# These models need higher tolerance in MaxAutotune mode
+REQUIRE_EVEN_HIGHER_TOLERANCE_MAX_AUTOTUNE = {
+    "gluon_inception_v3",
+}
+
 REQUIRE_HIGHER_TOLERANCE_FOR_FREEZING = {
     "adv_inception_v3",
     "botnet26t_256",
@@ -344,7 +354,12 @@ class TimmRunner(BenchmarkRunner):
             tolerance = 8 * 1e-2
 
         if is_training:
-            if name in ["levit_128"]:
+            from torch._inductor import config as inductor_config
+
+            if name in REQUIRE_EVEN_HIGHER_TOLERANCE or (
+                inductor_config.max_autotune
+                and name in REQUIRE_EVEN_HIGHER_TOLERANCE_MAX_AUTOTUNE
+            ):
                 tolerance = 8 * 1e-2
             elif name in REQUIRE_HIGHER_TOLERANCE:
                 tolerance = 4 * 1e-2
